@@ -12,6 +12,7 @@ const passport       = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const session        = require('express-session')
 
+
 /* --- FRONTEND --- */
 
 const app = express()
@@ -87,11 +88,38 @@ app.get('/', (req, res) => {
 app.get('/dashboard',
     login_guard,
     async (req, res) => {
+        const db = await open_db()
+        
+        const all_nums = await db.all('SELECT id, num, name FROM Numbers')
+
+        debug(all_nums)
+
         res.render('dashboard', {
-            user: req.user
+            user: req.user,
+            all_nums
         })
     }
 )
 
+app.get('/messages/:id',
+    login_guard,
+    async (req, res) => {
+        try {
+            const db = await open_db()
+
+            const conversation = await db.all(`
+                SELECT * FROM Messages WHERE num_id=? ORDER BY time ASC
+            `, req.params.id)
+            res.json({success: true, messages: conversation})
+        } catch (e) {
+            res.json({success: false, msg: e.toString()})
+        }
+    }
+)
+
+// plug in the twilio subapp
+const sms_app = require('./twilio')
+app.use('/twilio', sms_app)
+
 // launch the app!
-app.listen(process.env['APP_PORT'], () => debug(`committee sso template listening on port ${process.env['APP_PORT']}!`))
+app.listen(process.env['APP_PORT'], () => debug(`committee sms listening on port ${process.env['APP_PORT']}!`))

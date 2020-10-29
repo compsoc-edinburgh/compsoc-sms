@@ -1,7 +1,7 @@
 version: '3'
 services:
-    compsoc-sso-demo-js:
-        image: compsoc-sso-demo-js
+    compsoc-sms:
+        image: compsoc-sms
         env_file:
             - ".env"
         ports:

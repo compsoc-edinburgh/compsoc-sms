@@ -3,9 +3,9 @@
 include .env
 export
 
-DOCKER_TAG_NAME = compsoc-sso-demo-js
+DOCKER_TAG_NAME = compsoc-sms
 REMOTE = compsoc-admin@bucket.comp-soc.com
-REMOTE_DESTINATION = sso-js
+REMOTE_DESTINATION = sms
 STAGING = staging
 
 
@@ -60,3 +60,5 @@ deploy-reg: upload-reg
 connect:
 	ssh ${REMOTE}
 
+twilio-local:
+	twilio phone-numbers:update "+13612667762" --sms-url="http://localhost:3000/twilio/sms"

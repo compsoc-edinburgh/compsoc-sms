@@ -1,6 +1,8 @@
 :root {
     --link: #d63031;
     --link--active: #ff7675;
+
+    --message: var(--link);
 }
 
 body {
@@ -21,13 +23,169 @@ a:hover {
     color: var(--link--active);
 }
 
-@media (min-width: calc(80ch + 2rem)) {
-    main {
-        width: 80ch;
-        padding-left: calc(50vw - 40ch - 1rem);
-    }
+
+.container {
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 20ch 1fr;
+    grid-template-rows: 50px 1fr;
+}
+
+
+nav {
+    /*background-color:  ;*/
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1em;
+}
+
+
+nav img {
+    height: 30px;
+    width: 30px;
+}
+
+.nav__brand, .nav__login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+.nav__title, .nav__name {
+    margin: 10px 1ch;
+}
+
+.nav__login {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav__login:hover > .nav__logout {
+    opacity: 0.95;
+}
+.nav__logout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: opacity 0.25s cubic-bezier(0,0,0.3,1);
+    opacity: 0;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 20ch;
+
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+aside > input[name="convo"] {
+    display:  none;
+}
+
+aside > input[name="convo"]:checked + label {
+    color: white;
+    background-color: var(--link);
+}
+
+aside > label:hover {
+    background-color: #FFD6D6;
+}
+
+aside > input[name="convo"] + label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    cursor: pointer;
+    padding: 10px;
 }
 
 main {
-    margin: 1rem;
+    overflow-y: auto;
+}
+
+main.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+    align-items:  center;
+}
+
+main.messages {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+.messages__container {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+}
+
+.messages__display {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100%;
+    align-items: flex-start;
+}
+
+.message {
+    color: white;
+    background-color: var(--message);
+
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.messages__bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--message);
+    margin-top: 1rem;
+}
+#refresh {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: var(--link);
+    cursor: pointer;
+}
+#refresh:hover {
+    color: var(--link--active);
+}
+#refresh:active {
+    color: black;
+}
+
+main.loggedout {
+    margin: 2rem 25vw;
 }

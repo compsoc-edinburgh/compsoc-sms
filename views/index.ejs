@@ -2,16 +2,33 @@
 
 <html>
     <head>
-        <title>SSO demo</title>
+        <title>CompSoc SMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="/static/index.css" rel="stylesheet">
         <link href="/static/compsoc-icon.png" rel="icon">
     </head>
     <body>
-        <main>
-            <h1>sso demo (js)</h1>
-            <a href="/auth/google">click to login &rarr;</a>
+        <nav>
+            <div class="nav__brand">
+                <img src="/static/compsoc-icon.png" alt="compsoc logo"/>
+                <h1 class="nav__title">CompSoc SMS</h1>
+            </div>
+
+            <a href="/auth/google">Log in</a>
+        </nav>
+        <main class="loggedout">
+            <h1> CompSoc SMS </h1>
+
+            <p> 
+              An internal <a href="//comp-soc.com"
+                target="_blank">CompSoc</a> service to provide a programmatic
+                interface to our internal SMS telephony.  This service is
+                <a href="//github.com/compsoc-edinburgh/compsoc-sms" 
+                   target="_blank">open-source</a> on Github.<br/>
+
+                <a href="/auth/google">Log in &rarr;</a>
+            </p>
         </main>
     </body>
 </html>

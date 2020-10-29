@@ -2,21 +2,52 @@
 
 <html>
     <head>
-        <title>SSO demo - logged in</title>
+        <title>CompSoc SMS - logged in</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="/static/index.css" rel="stylesheet">
         <link href="/static/compsoc-icon.png" rel="icon">
     </head>
     <body>
-        <main>
-            <h1>sso demo (js)</h1>
-            <p>
-                Logged in as <%= user.name %> <i>(<%= user.email %>)</i> <br/>
-                <a href="/auth/logout">Log out &rarr;</a>
-            </p>
-            <img src="<%= user.photo %>" alt="your profile pic"/>
-        </main>
+        <div class="container">
+            <nav>
+                <div class="nav__brand">
+                    <img src="/static/compsoc-icon.png" alt="compsoc logo"/>
+                    <h1 class="nav__title">CompSoc SMS</h1>
+                </div>
+
+                <div class="nav__login">
+                    <span class="nav__name"><%= user.name %></span>
+                    <img src="<%= user.photo %>" alt="<%= user.name %> photo"/>
+
+                    <a class="nav__logout" href="/auth/logout">
+                        <span>logout</span>
+                    </a>
+                </div>
+            </nav>
+            <aside>
+                <%- all_nums.map(n => `
+                    <input type="radio" id="cv-${n.id}" name="convo" value="${n.id}"/>
+                    <label for="cv-${n.id}">
+                        <strong>${n.num}</strong>
+                        ${n.name === null ? '<i>no name set</i>' : '<strong>' + n.name + '</strong>'}
+                    </label>
+                `).join('') %>
+            </aside>
+            <main class="empty">
+                <div>
+                    CompSoc phone numbers: 
+                    <ul>
+                        <li><a href="sms:+13162667762">+1 316 COMP SOC (+1 316 266 7762)</a></li>
+                        <li><a href="sms:+447830342069">+44 7830 342069</a></li>
+                    </ul>
+
+                    Logged in as <%= user.name %> <i>(<%= user.email %>)</i> <br/>
+                    <a href="/auth/logout">Log out &rarr;</a>
+                </div>
+            </main>
+            <script src="/static/index.js" type="text/javascript"></script>
+        </div>
     </body>
 </html>
 
