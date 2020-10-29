@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700&display=swap');
+
 :root {
     --link: #d63031;
     --link--active: #ff7675;
@@ -11,7 +13,7 @@ body {
     color: #444;
     background-color: #fffffd;
     
-    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+    font-family: "Commissioner", -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
 a {
